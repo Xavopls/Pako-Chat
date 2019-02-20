@@ -81,6 +81,9 @@ wss.on('connection', function (client) {
                     updateChat(client);
                     break;
 
+                case 'position':
+                    updatePosition(client, client_msg);
+                    break;
             }
 
     });
@@ -223,6 +226,19 @@ function updateChat(client) {
             for(var j = 0; j<room_list[i].clients.length; j++){
                 if (room_list[i].clients[j].nickname !== client.nickname){
                     room_list[i].clients[j].send(JSON.stringify(msg));
+                }
+            }
+        }
+    }
+}
+
+function updatePosition(client,position){
+    for(var i=0; i<room_list.length;i++) {
+        if (room_list[i].id === client.room.id) {
+            for(var j = 0; j<room_list[i].clients.length; j++){
+                if (room_list[i].clients[j].nickname == client.nickname){
+                    room_list[i].clients[j].position.x=position.x;
+                    room_list[i].clients[j].position.z=position.z;
                 }
             }
         }

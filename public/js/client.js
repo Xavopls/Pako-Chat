@@ -13,7 +13,7 @@ function Client() {
     this.nickname = '';
     this.user_id = '';
     this.color = '';
-    this.status ='';
+    this.status = '';
     this.nickname = '';
     this.onResponse = (resp) => {
         console.log('resp ', resp);
@@ -26,11 +26,9 @@ function Client() {
         var data = JSON.parse(msg.data);
         console.log('data.status: ', data.status);
 
-        if (data.status === 'OK' || data.status === 'ERROR'){
+        if (data.status === 'OK' || data.status === 'ERROR') {
             this.onResponse(msg);
-        }
-
-        else if(data.msg_type === 'update_chat'){
+        } else if (data.msg_type === 'update_chat') {
             receiveMessage(msg);
         }
     };
@@ -66,17 +64,25 @@ function Client() {
 
     this.show_user_list = (callback_fn) => {
         var message = {
-            'msg_type' : 'show_user_list'
+            'msg_type': 'show_user_list'
         };
         this.ws.send(JSON.stringify(message));
         this.onResponse = callback_fn
     }
     this.send_message = (msg_content, callback_fn) => {
         var message = {
-            'msg_type' : 'send_message',
-            'content' : msg_content
+            'msg_type': 'send_message',
+            'content': msg_content
         };
         this.ws.send(JSON.stringify(message));
         this.onResponse = callback_fn
+    }
+
+    this.send_position = (msg_content, callback_fn) => {
+        var message = {
+            'msg_type': 'position',
+            'x': msg_content.x,
+            'y': msg_content.y
+        }
     }
 }
