@@ -176,6 +176,7 @@ h1 {
 	padding-right: 5%;
 }
 
+
 #nick_label {
 	color: white;
 	font-size: 30px;
@@ -246,7 +247,11 @@ h1 {
 	margin-top: 5%;
 }
 
-#mid_column_game {}
+#mid_column_game  {
+	padding-left: 5%;
+	padding-top: 11%;
+	height: 100%;
+}
 
 #roomname_label {
 	display: block;
