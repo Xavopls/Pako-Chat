@@ -98,6 +98,7 @@ function createRoom(client, client_msg){
         room.name = client_msg.room_name;
         room.id = id_room_counter;
         client.room = room;
+        client.color = colores[Math.floor(Math.random()*colores.length)];
         id_client_counter++;
         client.nickname = client_msg.nickname;
         room.clients.push(client);
