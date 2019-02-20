@@ -93,7 +93,7 @@ html {
 
 html,
 label {
-	cursor: url("../assets/img/cursor.png"), auto;
+	
 }
 
 button,
@@ -101,7 +101,7 @@ input,
 canvas,
 select,
 option {
-	cursor: url("../assets/img/cursor_pick.png"), auto;
+	cursor: pointer;
 }
 
 h1 {

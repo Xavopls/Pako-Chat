@@ -85,8 +85,7 @@ function receiveMessage(msg) {
 	audio.play();
 	var title = document.querySelector("title");
 	title.innerHTML = "New message!";
-	var favicon = document.querySelector("#favicon");
-	favicon.href = "./assets/img/favicon_blink.png";
+	
 
 	var messages = document.querySelector('#messages');
 	messages.scrollTop = messages.scrollHeight; //Fuerza scroll del chat a estar siempre "bajado"
