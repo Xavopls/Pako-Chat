@@ -50,29 +50,14 @@ function createRenderer() {
 	document.getElementById("mid_column_game").appendChild(renderer.domElement);
 }
 
-function randomBuildings(number) {
-	for (i = 0; i < number; i++) {
-		var geometryy = new THREE.BoxGeometry(1, (Math.random() * 14) + 3, 1);
-		var materiall = new THREE.MeshPhongMaterial();
-		var meshh = new THREE.Mesh(geometryy, materiall);
-		meshh.position.x = (Math.random() * 21) - 10
-		meshh.position.z = (Math.random() * 21) - 10
-		meshh.position.y = 2
-		scene.add(meshh);
-	}
-}
-
-
 function init() {
 	createCamera();
 	createPlane();
 	createLight();
 	createRenderer();
-	randomBuildings(8);
 }
 
 function animate() {
-
 	my_car.render();
 	my_car.turn();
 	my_car.update();
