@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>New Pinturillo 2</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link id="favicon" rel="shortcut icon" type="image/png" href="assets/img/favicon_normal.png" />
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+</head>
+
+<body>
+    <!--######################################  LOGIN PAGE  ######################################-->
+    <div id="login_page_container">
+        <h1>Pako Chat 🚗️</h1>
+        <div>
+            <input name="p" required="required" id="nickname" placeholder="nickname" />
+            <div id="input_container" class="row">
+                <div class="column" id="left_column">
+                    <div id="createroom_cointainer">
+
+                        <input name="p" required="required" id="createroom" placeholder="Room name" />
+                        <button type="submit" class="btn btn-primary btn-block btn-large" id="set_createroom"><b>Create
+                                room</b></button>
+                    </div>
+                </div>
+                <div class="column" id="right_column">
+
+                    <section class="container" id="dropdown_rooms">
+                        <div class="dropdown">
+                            <select name="one" class="dropdown-select" id="select_room">
+                                <option value="" disabled selected>Room list...</option>
+
+                            </select>
+                        </div>
+                    </section>
+                    <button type="submit" class="btn btn-primary btn-block btn-large" id="join_room"><b>Join room</b></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--######################################  GAME PAGE  ######################################-->
+    <div id="game_page_container" class="row">
+
+        <div id="left_column_game" class="column_players">
+
+            <div id="player_list_header">
+                <h1 id="player_list_label">Player list</h1>
+            </div>
+            <div id="player_list">
+                <div class="player_name">
+                </div>
+            </div>
+        </div>
+        <div id="mid_column_game" class="column_canvas">
+
+
+        </div>
+        <div id="right_column_game" class="column_chat">
+            <div id="chat">
+                <audio id="myAudio">
+                    <source src="assets/sound/new_message.mp3" type="audio/mp3">
+                </audio>
+                <div id="messages" class="container darker">
+                </div>
+                <div id="input_chat" class="row">
+                    <div id="left_column_chat" class="column_chat">
+                        <input id="message" type="text"></input>
+                    </div>
+                    <div id="right_column_chat" class="column_chat">
+                        <button id="send" class="btn btn-primary btn-block btn-large">Send</button>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script src="js/client.js"></script>
+    <script src="js/login.js"></script>
+    <script src="js/room.js"></script>
+    <script src="js/chat.js"></script>
+
+
+</body>
+
+</html>

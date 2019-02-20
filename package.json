@@ -1,0 +1,25 @@
+{
+  "name": "pako-chat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Xavopls/Pako-Chat.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Xavopls/Pako-Chat/issues"
+  },
+  "homepage": "https://github.com/Xavopls/Pako-Chat#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "express-ws": "^4.0.0",
+    "nodemon": "^1.18.9",
+    "websocket": "^1.0.28"
+  }
+}
