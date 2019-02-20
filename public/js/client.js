@@ -11,11 +11,10 @@ function Client() {
 
     this.room = '';
     this.nickname = '';
-    this.user_id = '';
     this.color = '';
     this.status = '';
     this.nickname = '';
-    this.car_list = [];
+    this.car = '';
     this.onResponse = (resp) => {
         console.log('resp ', resp);
     };
@@ -36,9 +35,7 @@ function Client() {
         } else if (data.msg_type === 'update_chat') {
             receiveMessage(msg);
         } else if (data.msg_type === 'update_mesh') {
-            
             updateCar(data);
-           
         }
         
     };

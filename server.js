@@ -35,6 +35,7 @@ function Room(){
     this.client_list_by_nickname = [];
     this.painted_areas = [];
     this.chat_messages = [];
+    this.car_list = [];
 }
 
 
@@ -99,6 +100,9 @@ function createRoom(client, client_msg){
     if (!room){
         console.log('create_room');
         room = new Room();
+        client.car = new Car();
+        // modificar coche por cliente
+        room.car_list.push(client.car);
         room.name = client_msg.room_name;
         room.id = id_room_counter;
         client.room = room;
