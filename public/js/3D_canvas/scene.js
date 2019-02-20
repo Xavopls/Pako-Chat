@@ -41,11 +41,13 @@ function createRenderer() {
 	renderer = new THREE.WebGLRenderer({
 		antialias: true
 	});
-	renderer.setSize(window.innerWidth, window.innerHeight);
+
+	console.log('HEIGHT ', document.getElementById('mid_column_game').offsetHeight, 'Width ', document.getElementById('mid_column_game').offsetWidth)
+	renderer.setSize(750, 422);
 	renderer.shadowMap.enabled = true;
 	//document.body.appendChild(renderer.domElement);
 	//document.querySelector("#3d_canvas").appendChild(renderer.domElement);
-	document.getElementById("3d_canvas").appendChild(renderer.domElement);
+	document.getElementById("mid_column_game").appendChild(renderer.domElement);
 }
 
 function randomBuildings(number) {
