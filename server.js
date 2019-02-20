@@ -83,6 +83,7 @@ wss.on('connection', function (client) {
 
                 case 'position':
                     updatePosition(client, client_msg);
+                    updateMesh(client);
                     break;
             }
 
@@ -237,8 +238,35 @@ function updatePosition(client,position){
         if (room_list[i].id === client.room.id) {
             for(var j = 0; j<room_list[i].clients.length; j++){
                 if (room_list[i].clients[j].nickname == client.nickname){
-                    room_list[i].clients[j].position.x=position.x;
-                    room_list[i].clients[j].position.z=position.z;
+                    room_list[i].clients[j].car.mesh.position.x=position.x;
+                    room_list[i].clients[j].car.mesh.position.z=position.z;
+                }
+            }
+        }
+    }
+
+    var msg = {
+        'msg_type': 'send_position',
+        'status': 'OK',
+    };
+    JSON.stringify(msg);
+    client.send(JSON.stringify(msg));
+}
+
+function updateMesh(client) {
+    for(var i=0; i<room_list.length;i++) {
+        if (room_list[i].id === client.room.id) {
+            var msg = {
+                'msg_type': 'update_mesh',
+                'nickname': client.nickname,
+                'color': client.color,
+                'x': client.car.mesh.position.x,
+                'z': client.car.mesh.position.z,
+                'rotation': client.car.mesh.rotation
+            };
+            for(var j = 0; j<room_list[i].clients.length; j++){
+                if (room_list[i].clients[j].nickname !== client.nickname){
+                    room_list[i].clients[j].send(JSON.stringify(msg));
                 }
             }
         }

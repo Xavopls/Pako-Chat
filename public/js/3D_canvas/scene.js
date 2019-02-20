@@ -43,7 +43,9 @@ function createRenderer() {
 	});
 	renderer.setSize(window.innerWidth, window.innerHeight);
 	renderer.shadowMap.enabled = true;
-	document.body.appendChild(renderer.domElement);
+	//document.body.appendChild(renderer.domElement);
+	//document.querySelector("#3d_canvas").appendChild(renderer.domElement);
+	document.getElementById("3d_canvas").appendChild(renderer.domElement);
 }
 
 function randomBuildings(number) {
@@ -81,8 +83,8 @@ function animate() {
 
 
 var my_car = new Car();
-motor_powerON = new Audio('motor.mp3');
-motor_powerOFF = new Audio('motor2.mp3');
+motor_powerON = new Audio('/assets/sound/motor.mp3');
+motor_powerOFF = new Audio('/assets/sound/motor2.mp3');
 scene = new THREE.Scene();
 
 init();

@@ -15,12 +15,17 @@ function Client() {
     this.color = '';
     this.status = '';
     this.nickname = '';
+    this.car_list = [];
     this.onResponse = (resp) => {
         console.log('resp ', resp);
     };
     this.connect = () => {
         this.ws.send("You are connected!")
     };
+
+
+
+
 
     this.ws.onmessage = (msg) => {
         var data = JSON.parse(msg.data);
@@ -30,9 +35,27 @@ function Client() {
             this.onResponse(msg);
         } else if (data.msg_type === 'update_chat') {
             receiveMessage(msg);
+        } else if (data.msg_type === 'update_mesh') {
+            
+            updateCar(data);
+           
         }
+        
     };
 
+
+
+
+    function updateCar(data){
+        for(car of this.car_list){
+            if(car.nickname == data.nickname){
+                car.mesh.position.x=data.x
+                car.mesh.position.z=data.z
+                car.mesh.rotation=data.rotation
+                scene.add(car.mesh);
+            }
+        }
+    }
 
     this.join_room = (room_name, client_name, callback_fn) => {
         var message = {
@@ -83,6 +106,8 @@ function Client() {
             'msg_type': 'position',
             'x': msg_content.x,
             'y': msg_content.y
-        }
+        };
+        this.ws.send(JSON.stringify(message));
+        this.onResponse = callback_fn
     }
 }
