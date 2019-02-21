@@ -22,9 +22,10 @@ function on_user_list_shown(msg){
                     p.appendChild(h1);
                     player_list.appendChild(p);
                 }
-                client.car_list = data.car_list;
-                init();
-                animate();
+                if(data.car_list != null){
+                    client.lista_coche = data.car_list;
+                }
+
                 
                 console.log('USER LIST:', data.user_list);
                 break;

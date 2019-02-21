@@ -14,7 +14,6 @@ function Client() {
     this.color = '';
     this.status = '';
     this.nickname = '';
-    this.car = new Car();
     this.lista_coche= [];
     this.onResponse = (resp) => {
         console.log('resp ', resp);
@@ -23,7 +22,7 @@ function Client() {
         this.ws.send("You are connected!")
     };
 
-
+/*
     var car_client_1 = new Car();
     car_client_1.mesh.position.x = 6
     car_client_1.mesh.position.z = 8
@@ -43,7 +42,7 @@ function Client() {
     this.lista_coche.push(["car_client_3", car_client_3])
 
 
-
+*/
 
     this.ws.onmessage = (msg) => {
         var data = JSON.parse(msg.data);
@@ -79,22 +78,39 @@ function Client() {
         }
     }
 
-    this.join_room = (room_name, client_name, callback_fn) => {
+    this.join_room = (room_name, nickname, callback_fn) => {
+        this.car = {
+            'x': 0,
+            'y': 0,
+            'rotation': 0,
+            'color' : 'cyan',
+            'nickname' : nickname
+        };
         var message = {
             'msg_type': 'join_room',
             'room_name': room_name,
-            'nickname': client_name
+            'nickname': nickname,
+            'car': this.car
         };
         this.ws.send(JSON.stringify(message));
         this.onResponse = callback_fn
     };
 
-    this.create_room = (room_name, client_name, callback_fn) => {
+    this.create_room = (room_name, nickname, callback_fn) => {
+        this.car = {
+            'x': 0,
+            'y': 0,
+            'rotation': 0,
+            'color' : 'cyan',
+            'nickname' : nickname
+        };
         var message = {
             'msg_type': 'create_room',
             'room_name': room_name,
-            'nickname': client_name
+            'nickname': nickname,
+            'car': this.car
         };
+        // CREATE CAR INSTANCE HERE
         this.ws.send(JSON.stringify(message));
         this.onResponse = callback_fn
     };

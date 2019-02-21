@@ -23,9 +23,14 @@ function on_room_created(msg) {
 			break;
 
 		case 'OK':
+			console.log('CLIENT     ', client);
+
 			document.querySelector("#login_page_container").style.display = "none"; //Ocultamos login y desplegamos el chat
 			document.querySelector("#game_page_container").style.display = "inline";
+			//client.lista_coche.push([client.nickname, client.car]);
 			show_user_list();
+			init();
+			animate();
 			break;
 
 	}
@@ -53,7 +58,9 @@ function on_room_joined(msg){
 		case 'OK':
 			document.querySelector("#login_page_container").style.display = "none"; //Ocultamos login y desplegamos el chat
 			document.querySelector("#game_page_container").style.display = "inline";
-			
+
+			init();
+			animate();
 			show_user_list();
 			break;
 

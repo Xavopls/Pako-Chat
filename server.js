@@ -98,10 +98,9 @@ function createRoom(client, client_msg){
 
     // SI LA SALA NO EXISTE
     if (!room){
-        console.log('create_room');
         room = new Room();
         // modificar coche por cliente
-        room.car_list.push(client.car);
+        room.car_list.push(client_msg.car);
         room.name = client_msg.room_name;
         room.id = id_room_counter;
         client.room = room;
@@ -140,8 +139,8 @@ function joinRoom(client, client_msg){
     for (var i = 0; i<room_list.length;i++){
         if (client_msg.room_name === room_list[i].name){
             client.room = room_list[i];
+            room_list[i].car_list.push(client_msg.car);
             room_list[i].clients.push(client);
-            room_list[i].car_list.push(client.car);
             room_list[i].client_list_by_nickname.push(client.nickname);
             updateClients(room_list[i])
         }
@@ -154,7 +153,6 @@ function joinRoom(client, client_msg){
 }
 
 function listRooms(client){
-    console.log(room_list);
     var room_ids = [];
     for (var i = 0; i<room_list.length; i++){
         room_ids.push(room_list[i].name);
@@ -170,7 +168,6 @@ function listRooms(client){
 
 function showUserList(client){
     var found = false;
-    console.log("CLIENT ROOM ID: " ,client.room.id);
     for(var i=0; i<room_list.length;i++){
         if (room_list[i].id === client.room.id){
             found = true;

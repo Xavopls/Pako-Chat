@@ -45,8 +45,6 @@ function createRenderer() {
 	console.log('HEIGHT ', document.getElementById('mid_column_game').offsetHeight, 'Width ', document.getElementById('mid_column_game').offsetWidth)
 	renderer.setSize(750, 422);
 	renderer.shadowMap.enabled = true;
-	//document.body.appendChild(renderer.domElement);
-	//document.querySelector("#3d_canvas").appendChild(renderer.domElement);
 	document.getElementById("mid_column_game").appendChild(renderer.domElement);
 }
 
@@ -63,9 +61,26 @@ function animate() {
 	my_car.update();
 	my_car.margin();
 	my_car.audioo();
-	for(car of client.lista_coche){
-		car[1].render()
+	console.log('qeeeeeeeeeeeeeeeeeeeee ');
+
+	if (client.lista_coche.length !== 0) {
+		console.log('LISTA COGA ', client.lista_coche);
+		for(car of client.lista_coche){
+				this.geometry = new THREE.BoxGeometry(1, 1, 1);
+				this.material = new THREE.MeshLambertMaterial({
+					color: car.color
+				});
+			console.log('aaasdasdasdasdasdasdasd');
+
+			this.mesh = new THREE.Mesh(this.geometry, this.material);
+				this.mesh.position.y = 2;
+				this.mesh.position.x = car.x;
+				this.mesh.position.z = car.z;
+
+				scene.add(this.mesh)
+		}
 	}
+
 	renderer.render(scene, camera);
 	requestAnimationFrame(animate);
 }
