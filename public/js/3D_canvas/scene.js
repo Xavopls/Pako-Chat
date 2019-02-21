@@ -63,6 +63,9 @@ function animate() {
 	my_car.update();
 	my_car.margin();
 	my_car.audioo();
+	for(car of client.lista_coche){
+		car[1].render()
+	}
 	renderer.render(scene, camera);
 	requestAnimationFrame(animate);
 }
@@ -74,5 +77,3 @@ motor_powerON = new Audio('/assets/sound/motor.mp3');
 motor_powerOFF = new Audio('/assets/sound/motor2.mp3');
 scene = new THREE.Scene();
 
-init();
-animate();

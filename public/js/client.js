@@ -15,7 +15,7 @@ function Client() {
     this.status = '';
     this.nickname = '';
     this.car = new Car();
-    this.car_list='';
+    this.lista_coche= [];
     this.onResponse = (resp) => {
         console.log('resp ', resp);
     };
@@ -23,6 +23,24 @@ function Client() {
         this.ws.send("You are connected!")
     };
 
+
+    var car_client_1 = new Car();
+    car_client_1.mesh.position.x = 6
+    car_client_1.mesh.position.z = 8
+    car_client_1.mesh.rotation.y = 4
+    this.lista_coche.push(["car_client_1", car_client_1])
+
+    var car_client_2 = new Car();
+    car_client_2.mesh.position.x = 2
+    car_client_2.mesh.position.z = 5
+    car_client_2.mesh.rotation.y = 10
+    this.lista_coche.push(["car_client_2", car_client_2])
+
+    var car_client_3 = new Car();
+    car_client_3.mesh.position.x = 8
+    car_client_3.mesh.position.z = 2
+    car_client_3.mesh.rotation.y = 3
+    this.lista_coche.push(["car_client_3", car_client_3])
 
 
 
