@@ -22,7 +22,8 @@ function on_user_list_shown(msg){
                     p.appendChild(h1);
                     player_list.appendChild(p);
                 }
-
+                client.car_list = data.car_list;
+                // LLAMAR FUNCION DE PINTAR COCHE AQUI
                 console.log('USER LIST:', data.user_list);
                 break;
 

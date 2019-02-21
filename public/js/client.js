@@ -14,7 +14,8 @@ function Client() {
     this.color = '';
     this.status = '';
     this.nickname = '';
-    this.car = '';
+    this.car = new Car();
+    this.car_list='';
     this.onResponse = (resp) => {
         console.log('resp ', resp);
     };

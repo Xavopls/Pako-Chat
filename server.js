@@ -100,7 +100,6 @@ function createRoom(client, client_msg){
     if (!room){
         console.log('create_room');
         room = new Room();
-        client.car = new Car();
         // modificar coche por cliente
         room.car_list.push(client.car);
         room.name = client_msg.room_name;
@@ -137,10 +136,12 @@ function repeatedRoom(){
 
 function joinRoom(client, client_msg){
     client.nickname = client_msg.nickname;
+
     for (var i = 0; i<room_list.length;i++){
         if (client_msg.room_name === room_list[i].name){
             client.room = room_list[i];
             room_list[i].clients.push(client);
+            room_list[i].car_list.push(client.car);
             room_list[i].client_list_by_nickname.push(client.nickname);
             updateClients(room_list[i])
         }
@@ -197,7 +198,8 @@ function updateClients(room) {
     var msg = {
         'msg_type': 'list_users',
         'status': 'OK',
-        'user_list': room.client_list_by_nickname
+        'user_list': room.client_list_by_nickname,
+        'car_list' : room.car_list
     };
     JSON.stringify(msg);
 
