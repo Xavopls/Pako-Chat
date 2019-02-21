@@ -84,7 +84,7 @@ wss.on('connection', function (client) {
 
                 case 'position':
                     updatePosition(client, client_msg);
-                    updateMesh(client);
+                    updateMesh(client, client_msg);
                     break;
             }
 
@@ -239,42 +239,41 @@ function updateChat(client) {
     }
 }
 
-function updatePosition(client,position){
-    for(var i=0; i<room_list.length;i++) {
+function updatePosition(client, client_msg) {
+    for (var i = 0; i < room_list.length; i++) {
         if (room_list[i].id === client.room.id) {
-            for(var j = 0; j<room_list[i].clients.length; j++){
-                if (room_list[i].clients[j].nickname == client.nickname){
-                    room_list[i].clients[j].car.mesh.position.x=position.x;
-                    room_list[i].clients[j].car.mesh.position.z=position.z;
-                }
-            }
-        }
-    }
-
-    var msg = {
-        'msg_type': 'send_position',
-        'status': 'OK',
-    };
-    JSON.stringify(msg);
-    client.send(JSON.stringify(msg));
-}
-
-function updateMesh(client) {
-    for(var i=0; i<room_list.length;i++) {
-        if (room_list[i].id === client.room.id) {
-            var msg = {
-                'msg_type': 'update_mesh',
-                'nickname': client.nickname,
-                'color': client.color,
-                'x': client.car.mesh.position.x,
-                'z': client.car.mesh.position.z,
-                'rotation': client.car.mesh.rotation
-            };
-            for(var j = 0; j<room_list[i].clients.length; j++){
-                if (room_list[i].clients[j].nickname !== client.nickname){
-                    room_list[i].clients[j].send(JSON.stringify(msg));
+            for (var j = 0; j < room_list[i].car_list; j++) {
+                if (room_list[i].car_list[j] === client_msg.nickname) {
+                    room_list[i].car_list[j].x = client_msg.x;
+                    room_list[i].car_list[j].z = client_msg.z;
+                    room_list[i].car_list[j].rotation = client_msg.rotation;
+                    var msg = {
+                        'msg_type': 'send_position',
+                        'status': 'OK',
+                    };
+                    JSON.stringify(msg);
+                    client.send(JSON.stringify(msg));
                 }
             }
         }
     }
 }
+
+    function updateMesh(client, client_msg) {
+        for (var i = 0; i < room_list.length; i++) {
+            if (room_list[i].id === client.room.id) {
+                var msg = {
+                    'msg_type': 'update_mesh',
+                    'nickname': client_msg.nickname,
+                    'x': client_msg.x,
+                    'z': client_msg.z,
+                    'rotation': client_msg.rotation
+                };
+                for (var j = 0; j < room_list[i].clients.length; j++) {
+                    if (room_list[i].clients[j].nickname !== client_msg.nickname) {
+                        room_list[i].clients[j].send(JSON.stringify(msg));
+                    }
+                }
+            }
+        }
+    }

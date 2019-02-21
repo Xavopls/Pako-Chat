@@ -56,13 +56,12 @@ function init() {
 }
 
 function animate() {
-	my_car.render();
-	my_car.turn();
-	my_car.update();
-	my_car.margin();
-	my_car.audioo();
+	client.lambo.render();
+	client.lambo.turn();
+	client.lambo.update();
+	client.lambo.margin();
+	client.lambo.audioo();
 	//console.log('qeeeeeeeeeeeeeeeeeeeee ');
-	console.log('posotions x ', my_car .mesh.position.x);
 
 	if (client.lista_coche.length !== 0) {
 		//console.log('LISTA COGA ', client.lista_coche);
@@ -82,6 +81,7 @@ function animate() {
 				this.mesh.position.y = 2;
 				this.mesh.position.x = client.lista_coche[i].x;
 				this.mesh.position.z = client.lista_coche[i].y;
+				this.mesh.rotation.y = client.lista_coche[i].rotation;
 
 				scene.add(this.mesh)
 			}
@@ -94,7 +94,6 @@ function animate() {
 
 
 
-var my_car = new Car();
 motor_powerON = new Audio('/assets/sound/motor.mp3');
 motor_powerOFF = new Audio('/assets/sound/motor2.mp3');
 scene = new THREE.Scene();

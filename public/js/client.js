@@ -18,6 +18,7 @@ function Client() {
     this.onResponse = (resp) => {
         console.log('resp ', resp);
     };
+    this.lambo = new Car();
     this.connect = () => {
         this.ws.send("You are connected!")
     };
@@ -60,6 +61,7 @@ function Client() {
             receiveMessage(msg);
         } else if (data.msg_type === 'update_mesh') {
             updateCar(data);
+            console.log('DATA PENYA   ',data);
         }
         
     };
@@ -68,12 +70,11 @@ function Client() {
 
 
     function updateCar(data){
-        for(car of this.car_list){
-            if(car.nickname == data.nickname){
-                car.mesh.position.x=data.x
-                car.mesh.position.z=data.z
-                car.mesh.rotation=data.rotation
-                scene.add(car.mesh);
+        for(var i = 0; i<this.lista_coche.length; i++){
+            if(this.lista_coche[i].nickname == data.nickname){
+                this.lista_coche[i].x=data.x;
+                this.lista_coche[i].z=data.z;
+                this.lista_coche[i].rotation=data.rotation;
             }
         }
     }
@@ -139,11 +140,13 @@ function Client() {
         this.onResponse = callback_fn
     }
 
-    this.send_position = (msg_content, callback_fn) => {
+    this.send_position = (callback_fn) => {
         var message = {
             'msg_type': 'position',
-            'x': msg_content.x,
-            'y': msg_content.y
+            'x': this.lambo.mesh.position.x,
+            'z': this.lambo.mesh.position.z,
+            'rotation': this.lambo.mesh.rotation.y,
+            'nickname': this.nickname
         };
         this.ws.send(JSON.stringify(message));
         this.onResponse = callback_fn

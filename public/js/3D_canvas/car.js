@@ -40,6 +40,7 @@ Car.prototype.update = function () {
 	this.vel[0] *= 0.99;
 	this.vel[1] *= 0.99;
 
+	client.send_position(on_position_sent);
 }
 
 Car.prototype.setRotation = function (a) {
@@ -92,5 +93,14 @@ Car.prototype.margin = function () {
 
 	if (this.mesh.position.z < -size_plane_z / 2) {
 		this.mesh.position.z = size_plane_z / 2;
+	}
+}
+
+function on_position_sent(msg) {
+	var data = JSON.parse(msg.data);
+
+	switch (data.status) {
+		case 'OK':
+			break;
 	}
 }
