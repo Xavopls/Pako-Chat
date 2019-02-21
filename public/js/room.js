@@ -15,10 +15,10 @@ function on_user_list_shown(msg){
                     player_list.removeChild(player_list.lastChild);
                 }
                 var p = document.createElement('p');
-                for (var i = 0; i<data.user_list.length; i++){
+                for (user of data.user_list){
                     var h1 = document.createElement('h1');
                     h1.className = 'client_from_list';
-                    h1.innerHTML = '<span>● </span>' + data.user_list[i];
+                    h1.innerHTML = '<span style="color:green;">● </span>' + user;
                     p.appendChild(h1);
                     player_list.appendChild(p);
                 }

@@ -19,7 +19,6 @@ function sendChatMessage(){
 
 		var message = {};
 
-
 		//Montamos parte visual
 		var div1 = document.createElement('div');
 		var div2 = document.createElement('div');

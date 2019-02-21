@@ -51,6 +51,12 @@ function Client() {
 
         if (data.status === 'OK' || data.status === 'ERROR') {
             this.onResponse(msg);
+            
+            if(data.msg_type === 'create_room' || data.msg_type === 'join_room'){
+                this.color=data.color;
+            } 
+
+
         } else if (data.msg_type === 'update_chat') {
             receiveMessage(msg);
         } else if (data.msg_type === 'update_mesh') {
