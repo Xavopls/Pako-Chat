@@ -53,7 +53,7 @@ function on_room_joined(msg){
 		case 'OK':
 			document.querySelector("#login_page_container").style.display = "none"; //Ocultamos login y desplegamos el chat
 			document.querySelector("#game_page_container").style.display = "inline";
-			canvasPos = setCanvas(canvas); //Fijamos posición del canvas i pintamos el fondo
+			
 			show_user_list();
 			break;
 
