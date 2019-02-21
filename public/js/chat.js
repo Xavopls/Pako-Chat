@@ -83,8 +83,6 @@ function receiveMessage(msg) {
 	//Detalles fancy del chat
 	var audio = document.querySelector('#myAudio');
 	audio.play();
-	var title = document.querySelector("title");
-	title.innerHTML = "New message!";
 	
 
 	var messages = document.querySelector('#messages');
