@@ -11,6 +11,7 @@ set_createroom.addEventListener("click", function () {
 	var room_name = document.querySelector("#createroom").value;
 	var user_name = document.querySelector("#nickname").value;
 	if (room_name.length > 0 && user_name.length > 0){
+		client.nickname = user_name;
 		client.create_room(room_name, user_name, on_room_created);
 	}
 });
@@ -44,6 +45,7 @@ join_room.addEventListener("click", function () {
 	var joined_room = select_room.options[select_room.selectedIndex].value;
 	var client_nick = document.querySelector("#nickname").value;
 	if(client_nick.length > 0){
+		client.nickname = client_nick;
 		client.join_room(joined_room,client_nick, on_room_joined);
 	}
 });

@@ -142,7 +142,8 @@ function joinRoom(client, client_msg){
             room_list[i].car_list.push(client_msg.car);
             room_list[i].clients.push(client);
             room_list[i].client_list_by_nickname.push(client.nickname);
-            updateClients(room_list[i])
+            console.log('car kust ', room_list[i].car_list);
+            updateClients(room_list[i]);
         }
     }
     var msg = {
@@ -174,7 +175,9 @@ function showUserList(client){
             var msg = {
                 'msg_type': 'list_users',
                 'status': 'OK',
-                'user_list': room_list[i].client_list_by_nickname
+                'user_list': room_list[i].client_list_by_nickname,
+                'car_list' : room_list[i].car_list
+
             };
             JSON.stringify(msg);
             client.send(JSON.stringify(msg));

@@ -10,6 +10,9 @@ function on_user_list_shown(msg){
     if (data.msg_type === 'list_users'){
         switch(data.status){
             case 'OK':
+                if(data.car_list != null){
+                    client.lista_coche = data.car_list;
+                }
                 var player_list = document.querySelector("#player_list");
                 while (player_list.lastChild){
                     player_list.removeChild(player_list.lastChild);
@@ -22,9 +25,9 @@ function on_user_list_shown(msg){
                     p.appendChild(h1);
                     player_list.appendChild(p);
                 }
-                if(data.car_list != null){
-                    client.lista_coche = data.car_list;
-                }
+                console.log('WE ARE ALIVE CARLITOS', JSON.stringify(data.car_list));
+                console.log('WE ARE ALIVE CARLITOS data cruda', JSON.stringify(data));
+
 
                 
                 console.log('USER LIST:', data.user_list);

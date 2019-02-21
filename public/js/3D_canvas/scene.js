@@ -61,23 +61,30 @@ function animate() {
 	my_car.update();
 	my_car.margin();
 	my_car.audioo();
-	console.log('qeeeeeeeeeeeeeeeeeeeee ');
+	//console.log('qeeeeeeeeeeeeeeeeeeeee ');
+	console.log('posotions x ', my_car .mesh.position.x);
 
 	if (client.lista_coche.length !== 0) {
-		console.log('LISTA COGA ', client.lista_coche);
-		for(car of client.lista_coche){
+		//console.log('LISTA COGA ', client.lista_coche);
+		for(var i = 0; i<client.lista_coche.length; i++) {
+			console.log('client.nickname', client.nickname);
+			console.log('client.lista_coche[i].nickname', client.lista_coche[i].nickname);
+			console.log('client', client);
+
+			if (client.nickname !==  client.lista_coche[i].nickname){
 				this.geometry = new THREE.BoxGeometry(1, 1, 1);
 				this.material = new THREE.MeshLambertMaterial({
-					color: car.color
+					color: client.lista_coche[i].color
 				});
-			console.log('aaasdasdasdasdasdasdasd');
+				//console.log('aaasdasdasdasdasdasdasd');
 
-			this.mesh = new THREE.Mesh(this.geometry, this.material);
+				this.mesh = new THREE.Mesh(this.geometry, this.material);
 				this.mesh.position.y = 2;
-				this.mesh.position.x = car.x;
-				this.mesh.position.z = car.z;
+				this.mesh.position.x = client.lista_coche[i].x;
+				this.mesh.position.z = client.lista_coche[i].y;
 
 				scene.add(this.mesh)
+			}
 		}
 	}
 
