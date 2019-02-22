@@ -52,13 +52,15 @@ wss.on('connection', function (client) {
     client.color = colores[Math.floor(Math.random() * colores.length)];
 
     client.on('message', function (message) {
-        console.log('%s --- Received: %s', new Date().toLocaleString(), message);
+
+
         var client_msg = '';
         try {
             client_msg = JSON.parse(message);
         } catch(e) {
             return
         }
+            //console.log('%s --- Received: %s', new Date().toLocaleString(), message);
             switch (client_msg.msg_type) {
             //** LOGIN PAGE **/
                 case 'create_room':
@@ -168,10 +170,14 @@ function listRooms(client){
 }
 
 function showUserList(client){
+    console.log('we are inside shouserlist')
     var found = false;
     for(var i=0; i<room_list.length;i++){
         if (room_list[i].id === client.room.id){
+            console.log('WE INSIDE IF')
             found = true;
+            console.log('room_list[i].car_list', room_list[i].car_list)
+            console.log('room_list[i].client_list_by_nickname', room_list[i].client_list_by_nickname)
             var msg = {
                 'msg_type': 'list_users',
                 'status': 'OK',
@@ -179,8 +185,6 @@ function showUserList(client){
                 'car_list' : room_list[i].car_list
 
             };
-            JSON.stringify(msg);
-            client.send(JSON.stringify(msg));
         }
     }
 
@@ -189,9 +193,11 @@ function showUserList(client){
             'msg_type': 'list_users',
             'status': 'ERROR'
         };
-        JSON.stringify(msg);
-        client.send(JSON.stringify(msg));
+
     }
+    console.log('asssssasasas');
+    JSON.stringify(msg);
+    client.send(JSON.stringify(msg));
 }
 
 function updateClients(room) {
@@ -270,6 +276,7 @@ function updatePosition(client, client_msg) {
                     'rotation': client_msg.rotation
                 };
                 for (var j = 0; j < room_list[i].clients.length; j++) {
+
                     if (room_list[i].clients[j].nickname !== client_msg.nickname) {
                         room_list[i].clients[j].send(JSON.stringify(msg));
                     }

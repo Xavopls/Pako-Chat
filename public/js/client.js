@@ -47,8 +47,6 @@ function Client() {
 
     this.ws.onmessage = (msg) => {
         var data = JSON.parse(msg.data);
-        console.log('data.status: ', data.status);
-
         if (data.status === 'OK' || data.status === 'ERROR') {
             this.onResponse(msg);
             
@@ -60,10 +58,8 @@ function Client() {
         } else if (data.msg_type === 'update_chat') {
             receiveMessage(msg);
         } else if (data.msg_type === 'update_mesh') {
-            updateCar(data);
-            console.log('DATA PENYA   ',data);
+            updateCar(msg);
         }
-        
     };
 
 
@@ -71,7 +67,9 @@ function Client() {
 
     function updateCar(data){
         for(var i = 0; i<this.lista_coche.length; i++){
-            if(this.lista_coche[i].nickname == data.nickname){
+            console.log('DATA PENYA   ',data);
+            console.log('client.lista_coche ', this.lista_coche);
+            if(this.lista_coche[i].nickname === data.nickname){
                 this.lista_coche[i].x=data.x;
                 this.lista_coche[i].z=data.z;
                 this.lista_coche[i].rotation=data.rotation;
@@ -151,4 +149,6 @@ function Client() {
         this.ws.send(JSON.stringify(message));
         this.onResponse = callback_fn
     }
+
+
 }

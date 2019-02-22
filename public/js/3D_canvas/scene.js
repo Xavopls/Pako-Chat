@@ -66,9 +66,9 @@ function animate() {
 	if (client.lista_coche.length !== 0) {
 		//console.log('LISTA COGA ', client.lista_coche);
 		for(var i = 0; i<client.lista_coche.length; i++) {
-			console.log('client.nickname', client.nickname);
-			console.log('client.lista_coche[i].nickname', client.lista_coche[i].nickname);
-			console.log('client', client);
+			//console.log('client.nickname', client.nickname);
+			//console.log('client.lista_coche[i].nickname', client.lista_coche[i].nickname);
+			//console.log('client', client);
 
 			if (client.nickname !==  client.lista_coche[i].nickname){
 				this.geometry = new THREE.BoxGeometry(1, 1, 1);

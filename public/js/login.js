@@ -5,6 +5,7 @@ var canvasPos;
 
 
 
+
 // CREATE ROOM
 var set_createroom = document.querySelector("#set_createroom");
 set_createroom.addEventListener("click", function () {
@@ -24,14 +25,15 @@ function on_room_created(msg) {
 			break;
 
 		case 'OK':
-			console.log('CLIENT     ', client);
-
 			document.querySelector("#login_page_container").style.display = "none"; //Ocultamos login y desplegamos el chat
 			document.querySelector("#game_page_container").style.display = "inline";
 			//client.lista_coche.push([client.nickname, client.car]);
 			show_user_list();
-			init();
-			animate();
+			setTimeout(function() {
+				init();
+				animate();// runs second
+			}, 1000);
+
 			break;
 
 	}
@@ -61,9 +63,11 @@ function on_room_joined(msg){
 			document.querySelector("#login_page_container").style.display = "none"; //Ocultamos login y desplegamos el chat
 			document.querySelector("#game_page_container").style.display = "inline";
 
-			init();
-			animate();
 			show_user_list();
+			setTimeout(function() {
+				init();
+				animate();// runs second
+			}, 2000);
 			break;
 
 	}
@@ -81,8 +85,6 @@ dropdown_rooms.addEventListener("click", function () {
 function on_rooms_received(msg){
 	var data = JSON.parse(msg.data);
 	var rooms = data.rooms;
-	console.log(rooms);
-
 		rooms.forEach((sala) => {
 			var name_room = decodeURI(sala); //decodeURI para que no nos de caracteres raros tipo espacios como %20
 			if (name_room) {

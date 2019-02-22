@@ -40,7 +40,10 @@ Car.prototype.update = function () {
 	this.vel[0] *= 0.99;
 	this.vel[1] *= 0.99;
 
-	client.send_position(on_position_sent);
+	setTimeout(function() {
+		client.send_position(on_position_sent);
+	}, 1000)
+
 }
 
 Car.prototype.setRotation = function (a) {

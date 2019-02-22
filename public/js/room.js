@@ -1,15 +1,18 @@
-
 // LIST USERS IN THE SAME ROOM
 
 function show_user_list(){
-    client.show_user_list(on_user_list_shown);    
+    console.log('show_user_list)')
+    client.show_user_list(on_user_list_shown);
 }
 
 function on_user_list_shown(msg){
+    console.log('on_show_user_list)')
+
     var data = JSON.parse(msg.data);
     if (data.msg_type === 'list_users'){
         switch(data.status){
             case 'OK':
+                console.log('asdasdasdasdd coche, ',data.car_list)
                 if(data.car_list != null){
                     client.lista_coche = data.car_list;
                 }
@@ -29,7 +32,7 @@ function on_user_list_shown(msg){
                 console.log('WE ARE ALIVE CARLITOS data cruda', JSON.stringify(data));
 
 
-                
+
                 console.log('USER LIST:', data.user_list);
                 break;
 
@@ -40,3 +43,16 @@ function on_user_list_shown(msg){
     }
 
 }
+
+/*
+function updateCar(data){
+    console.log('client.lista_coche ', client.lista_coche);
+    for(var i = 0; i<client.lista_coche.length; i++){
+        if(client.lista_coche[i].nickname === data.nickname){
+            client.lista_coche[i].x=data.x;
+            client.lista_coche[i].z=data.z;
+            client.lista_coche[i].rotation=data.rotation;
+        }
+    }
+}
+*/
